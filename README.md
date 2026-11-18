@@ -13,6 +13,16 @@ The rules, numbers and screens follow the DOS game (with
 cut to fit an XT is mostly animation: soldiers jump from tile to tile, explosions
 are one picture, and the world is a flat map instead of a rotating globe.
 
+| EGA, 16 colours (8088 XT) | VGA, 256 colours (286) |
+|---|---|
+| <img src="release/screenshots/ega-battle.png" width="400" alt="EGA battle"> | <img src="release/screenshots/vga-battle.png" width="400" alt="VGA battle"> |
+| <img src="release/screenshots/ega-geoscape.png" width="400" alt="EGA geoscape"> | <img src="release/screenshots/vga-base.png" width="400" alt="VGA base"> |
+| **CGA, 4 colours (8088 XT)** | **Hercules, mono (8088 XT)** |
+| <img src="release/screenshots/cga-battle.png" width="400" alt="CGA battle"> | <img src="release/screenshots/herc-battle.png" width="400" alt="Hercules battle"> |
+
+More in [the screenshot gallery](release/screenshots/README.md): every mode's geoscape,
+base, battle, alien and inventory screens (taken in the 86Box emulator).
+
 ## Playing
 
 The download contains **no game data**. You need your own copy of X-COM: UFO

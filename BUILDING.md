@@ -180,6 +180,8 @@ python tools\intro.py C:\Games\OpenXcom\UFO data\xcom1 packs [--cga]  # INTROx.P
 .\tools\mkconv.ps1      # build\conv\XCOMCONV.EXE
 .\tools\mkdist.ps1      # build\dist\ + build\XCOMXT.ZIP (private, with your packs) and
                         # build\release\XCOMXT-GPL.ZIP (public: no packs; needs mkconv first)
+.\tools\pubshots.ps1 -Install d   # release\screenshots\ (the public README's pictures) from
+                        # installed releases in d\EGA, d\CGA, d\VGA, in 86Box (tools\pubshots.py)
 # -Private makes one zip (-ZipDir: elsewhere than build\), XCOMXT.ZIP: the three exes, README.TXT,
 # PACKS.VER and the shared packs in the root, the mode folders CGA\, EGA\ and VGA\ beside them
 # (docs/design.md "Mode folders"; a machine needs only its folder). Before it, packs\ needs the V packs:
