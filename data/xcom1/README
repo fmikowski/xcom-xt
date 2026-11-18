@@ -1,0 +1,19 @@
+OpenXcom rule files (standard/xcom1)
+====================================
+
+Source:     OpenXcom, https://openxcom.org, https://github.com/OpenXcom/OpenXcom
+            bin/standard/xcom1/*.rul (the "standard" X-COM: UFO Defense mod)
+Copyright:  OpenXcom Developers.
+Licence:    GNU General Public License, version 3 or later (see ../../COPYING).
+            These files are OpenXcom's work, redistributed here unchanged
+            under the same licence; xcom-xt is GPL v3 or later too.
+
+They describe the original game's terrains, map scripts, UFOs, craft, alien
+races, deployments, units, armour, items, facilities, regions, countries and
+UFO trajectories, and OpenXcom's corrections to the MCD terrain files
+(mcdPatches.rul: big wall kinds, HE blockage, armour, flammability). The converter (tools/xcomconv.py) reads them to build the
+packs; it needs them next to it (XCOMCONV.EXE carries a copy).
+
+Only the files the converter reads are included (19 of OpenXcom's). Texts
+(the Language folder) are NOT included: the converter reads the game's texts
+from the player's own copy of X-COM (GEODATA/ENGLISH.DAT).

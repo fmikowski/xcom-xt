@@ -1,0 +1,10 @@
+OpenXcom soldier name lists (common/SoldierName)
+================================================
+
+Source:     OpenXcom, https://openxcom.org, https://github.com/OpenXcom/OpenXcom
+            bin/common/SoldierName/*.nam
+Copyright:  OpenXcom Developers.
+Licence:    GNU General Public License, version 3 or later (see ../../COPYING).
+            Redistributed here unchanged under the same licence.
+
+tools/names.py builds NAMES.PAK from them (random soldier names by nationality).

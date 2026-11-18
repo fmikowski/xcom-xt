@@ -1,0 +1,397 @@
+{
+ "license": "SPDX-License-Identifier: GPL-3.0-or-later",
+ "cases": [
+  {"name": "bench_ega", "machine": "xt88ega", "opts": "BENCH BATTLE SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "ONE.TXT", "log": "BENCH.TXT", "until": ["^night light: (off|100 discs)"], "wait": 360, "metrics": [
+    {"name": "full redraw, average of 12 views", "see": "the battle view drawn anew: a jump of the view, a level change, the start of a turn", "bench": "^average full redraw (\\d+) ms"},
+    {"name": "full redraw, slowest view", "see": "the same on the busiest place of the map", "bench": "full redraw (\\d+) ms, picture", "agg": "max"},
+    {"name": "scroll by one tile", "see": "the view moved by a tile (keys)", "bench": "^scroll by one tile: (\\d+) ms"},
+    {"name": "edge scroll across", "see": "the view moved by the pointer at the screen edge", "bench": "^edge scroll across \\(32 pixels\\): (\\d+) ms"},
+    {"name": "edge scroll down", "see": "the same, up or down", "bench": "^edge scroll down \\(16 pixels\\): (\\d+) ms"},
+    {"name": "cursor step", "see": "the tile cursor moved one tile", "bench": "^cursor step (\\d+) ms"},
+    {"name": "unit step", "see": "one step of a walking unit drawn", "bench": "^unit step, 2 tiles apart (\\d+) ms"},
+    {"name": "present view", "see": "the finished picture copied to the screen (part of every redraw)", "bench": "^present view: (\\d+) ms"},
+    {"name": "full redraw with smoke and fire", "see": "the battle view drawn anew in smoke and fire", "bench": "^20,20 level 0 with \\d+ smoke \\+ \\d+ fire tiles: (\\d+) ms"},
+    {"name": "tile redraw in smoke", "see": "one tile drawn again in smoke", "bench": "^tile redraw in smoke: (\\d+) ms"},
+    {"name": "path search, 60 TU", "see": "the wait after the walk order (and each alien move)", "bench": "^path search unit 0 \\(60 TU\\): C \\d+ ms, asm (\\d+) ms"},
+    {"name": "vision update, 1 soldier", "see": "the wait at the end of a walk: what the soldier sees now", "bench": "^vision update \\(1 soldier\\): (\\d+) ms"},
+    {"name": "spot aliens (all pairs)", "see": "which aliens X-COM sees: every soldier-alien sight test", "bench": "^spot aliens: (\\d+) ms"},
+    {"name": "441 sight lines", "see": "part of every sight check", "bench": "^441 sight lines: (\\d+) ms"},
+    {"name": "360 voxel lines", "see": "lines of fire: before each shot, in the alien turn", "bench": "^360 voxel lines: (\\d+) ms"},
+    {"name": "aims at units (canTargetUnit), each", "see": "the wait before a shot at a unit; the BENCH line is n aims", "bench": "^\\d+ aims \\(canTargetUnit\\): (\\d+) ms", "per": "^(\\d+) aims"},
+    {"name": "100 pointer draws", "see": "the mouse pointer following the hand", "bench": "^mouse: 100 software pointer draw\\+erase (\\d+) ms"}
+  ]},
+  {"name": "bench_cga", "machine": "xt88cga", "opts": "BENCH BATTLE SEED 8 MISSION FA1C.PAK RACE RSC.PAK", "script": "ONE.TXT", "log": "BENCH.TXT", "until": ["^night light: (off|100 discs)"], "wait": 360, "metrics": [
+    {"name": "full redraw, average of 12 views", "see": "the battle view drawn anew: a jump of the view, a level change, the start of a turn", "bench": "^average full redraw (\\d+) ms"},
+    {"name": "full redraw, slowest view", "see": "the same on the busiest place of the map", "bench": "full redraw (\\d+) ms, picture", "agg": "max"},
+    {"name": "scroll by one tile", "see": "the view moved by a tile (keys)", "bench": "^scroll by one tile: (\\d+) ms"},
+    {"name": "edge scroll across", "see": "the view moved by the pointer at the screen edge", "bench": "^edge scroll across \\(32 pixels\\): (\\d+) ms"},
+    {"name": "edge scroll down", "see": "the same, up or down", "bench": "^edge scroll down \\(16 pixels\\): (\\d+) ms"},
+    {"name": "cursor step", "see": "the tile cursor moved one tile", "bench": "^cursor step (\\d+) ms"},
+    {"name": "unit step", "see": "one step of a walking unit drawn", "bench": "^unit step, 2 tiles apart (\\d+) ms"},
+    {"name": "present view", "see": "the finished picture copied to the screen (part of every redraw)", "bench": "^present view: (\\d+) ms"},
+    {"name": "full redraw with smoke and fire", "see": "the battle view drawn anew in smoke and fire", "bench": "^20,20 level 0 with \\d+ smoke \\+ \\d+ fire tiles: (\\d+) ms"},
+    {"name": "tile redraw in smoke", "see": "one tile drawn again in smoke", "bench": "^tile redraw in smoke: (\\d+) ms"},
+    {"name": "100 pointer draws", "see": "the mouse pointer following the hand (software pointer: CGA and Hercules draw it bit by bit)", "bench": "^mouse: 100 software pointer draw\\+erase (\\d+) ms"}
+  ]},
+  {"name": "bench_herc", "machine": "xt88herc", "opts": "BENCH BATTLE SEED 8 MISSION FA1C.PAK RACE RSC.PAK", "script": "ONE.TXT", "log": "BENCH.TXT", "until": ["^night light: (off|100 discs)"], "wait": 360, "metrics": [
+    {"name": "full redraw, average of 12 views", "see": "the battle view drawn anew: a jump of the view, a level change, the start of a turn", "bench": "^average full redraw (\\d+) ms"},
+    {"name": "full redraw, slowest view", "see": "the same on the busiest place of the map", "bench": "full redraw (\\d+) ms, picture", "agg": "max"},
+    {"name": "scroll by one tile", "see": "the view moved by a tile (keys)", "bench": "^scroll by one tile: (\\d+) ms"},
+    {"name": "edge scroll across", "see": "the view moved by the pointer at the screen edge", "bench": "^edge scroll across \\(32 pixels\\): (\\d+) ms"},
+    {"name": "edge scroll down", "see": "the same, up or down", "bench": "^edge scroll down \\(16 pixels\\): (\\d+) ms"},
+    {"name": "cursor step", "see": "the tile cursor moved one tile", "bench": "^cursor step (\\d+) ms"},
+    {"name": "unit step", "see": "one step of a walking unit drawn", "bench": "^unit step, 2 tiles apart (\\d+) ms"},
+    {"name": "present view", "see": "the finished picture copied to the screen (part of every redraw)", "bench": "^present view: (\\d+) ms"},
+    {"name": "full redraw with smoke and fire", "see": "the battle view drawn anew in smoke and fire", "bench": "^20,20 level 0 with \\d+ smoke \\+ \\d+ fire tiles: (\\d+) ms"},
+    {"name": "tile redraw in smoke", "see": "one tile drawn again in smoke", "bench": "^tile redraw in smoke: (\\d+) ms"},
+    {"name": "100 pointer draws", "see": "the mouse pointer following the hand (software pointer: CGA and Hercules draw it bit by bit)", "bench": "^mouse: 100 software pointer draw\\+erase (\\d+) ms"}
+  ]},
+  {"name": "bench_ju7", "machine": "xt88ega", "opts": "BENCH BATTLE SEED 8 MISSION JU7E.PAK RACE RME.PAK", "script": "ONE.TXT", "log": "BENCH.TXT", "until": ["^night light: (off|100 discs)"], "wait": 360, "metrics": [
+    {"name": "full redraw, average of 12 views", "see": "the battle view drawn anew: a jump of the view, a level change, the start of a turn", "bench": "^average full redraw (\\d+) ms"},
+    {"name": "full redraw, slowest view", "see": "the same on the busiest place of the map", "bench": "full redraw (\\d+) ms, picture", "agg": "max"},
+    {"name": "scroll by one tile", "see": "the view moved by a tile (keys)", "bench": "^scroll by one tile: (\\d+) ms"},
+    {"name": "edge scroll across", "see": "the view moved by the pointer at the screen edge", "bench": "^edge scroll across \\(32 pixels\\): (\\d+) ms"},
+    {"name": "edge scroll down", "see": "the same, up or down", "bench": "^edge scroll down \\(16 pixels\\): (\\d+) ms"},
+    {"name": "cursor step", "see": "the tile cursor moved one tile", "bench": "^cursor step (\\d+) ms"},
+    {"name": "unit step", "see": "one step of a walking unit drawn", "bench": "^unit step, 2 tiles apart (\\d+) ms"},
+    {"name": "present view", "see": "the finished picture copied to the screen (part of every redraw)", "bench": "^present view: (\\d+) ms"},
+    {"name": "full redraw with smoke and fire", "see": "the battle view drawn anew in smoke and fire", "bench": "^20,20 level 0 with \\d+ smoke \\+ \\d+ fire tiles: (\\d+) ms"},
+    {"name": "tile redraw in smoke", "see": "one tile drawn again in smoke", "bench": "^tile redraw in smoke: (\\d+) ms"},
+    {"name": "path search, 60 TU", "see": "the wait after the walk order (and each alien move)", "bench": "^path search unit 0 \\(60 TU\\): C \\d+ ms, asm (\\d+) ms"},
+    {"name": "vision update, 1 soldier", "see": "the wait at the end of a walk: what the soldier sees now", "bench": "^vision update \\(1 soldier\\): (\\d+) ms"},
+    {"name": "spot aliens (all pairs)", "see": "which aliens X-COM sees: every soldier-alien sight test", "bench": "^spot aliens: (\\d+) ms"},
+    {"name": "441 sight lines", "see": "part of every sight check", "bench": "^441 sight lines: (\\d+) ms"},
+    {"name": "360 voxel lines", "see": "lines of fire: before each shot, in the alien turn", "bench": "^360 voxel lines: (\\d+) ms"},
+    {"name": "aims at units (canTargetUnit), each", "see": "the wait before a shot at a unit; the BENCH line is n aims", "bench": "^\\d+ aims \\(canTargetUnit\\): (\\d+) ms", "per": "^(\\d+) aims"}
+  ]},
+  {"name": "bench_v20e", "machine": "v20e", "opts": "BENCH BATTLE SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "ONE.TXT", "log": "BENCH.TXT", "until": ["^night light: (off|100 discs)"], "wait": 400, "metrics": [
+    {"name": "full redraw, average of 12 views", "see": "the battle view drawn anew: a jump of the view, a level change, the start of a turn", "bench": "^average full redraw (\\d+) ms"},
+    {"name": "full redraw, slowest view", "see": "the same on the busiest place of the map", "bench": "full redraw (\\d+) ms, picture", "agg": "max"},
+    {"name": "scroll by one tile", "see": "the view moved by a tile (keys)", "bench": "^scroll by one tile: (\\d+) ms"},
+    {"name": "edge scroll across", "see": "the view moved by the pointer at the screen edge", "bench": "^edge scroll across \\(32 pixels\\): (\\d+) ms"},
+    {"name": "edge scroll down", "see": "the same, up or down", "bench": "^edge scroll down \\(16 pixels\\): (\\d+) ms"},
+    {"name": "cursor step", "see": "the tile cursor moved one tile", "bench": "^cursor step (\\d+) ms"},
+    {"name": "unit step", "see": "one step of a walking unit drawn", "bench": "^unit step, 2 tiles apart (\\d+) ms"},
+    {"name": "canvas: redraw copied, average of 12", "see": "EMS/UMB only: a redraw of ground seen before", "bench": "^canvas: 12 views: drawn \\d+ ms, from the canvas (\\d+) ms"},
+    {"name": "canvas: edge scroll into new ground", "see": "EMS/UMB only", "bench": "^canvas: edge scroll across into new ground (\\d+) ms"},
+    {"name": "canvas: one-tile scroll into new ground", "see": "EMS/UMB only", "bench": "^canvas: one-tile scroll into new ground (\\d+) ms"},
+    {"name": "night light: full redraw", "see": "UMB only: the battle view at night with the lit places", "bench": "^night light: full redraw 20,20 \\d+ ms, with it (\\d+) ms"},
+    {"name": "night light + canvas: full redraw", "see": "EMS/UMB only", "bench": "^night light, canvas: full redraw 20,20 \\d+ ms, with it (\\d+) ms"},
+    {"name": "night light + canvas: cursor step", "see": "EMS/UMB only", "bench": "^night light, canvas: cursor step \\d+ ms, with it (\\d+) ms"},
+    {"name": "night light + canvas: soldier's step", "see": "EMS/UMB only", "bench": "^night light, canvas: soldier's step \\d+ ms, with it (\\d+) ms"},
+    {"name": "night light + canvas: one-tile scroll", "see": "EMS/UMB only", "bench": "^night light, canvas: one-tile scroll \\d+ ms, with it (\\d+) ms"}
+  ]},
+  {"name": "ff_ju7", "machine": "xt88ega", "opts": "BATTLE SEED 8 MISSION JU7E.PAK RACE RME.PAK MONTH 9", "script": "OPTFF.TXT", "log": "LOG.TXT", "until": ["T9: Turn 9", "script finished"], "wait": 900, "metrics": [
+    {"name": "firefight turn 1: alien turn", "see": "the Hidden Movement screen with aliens in a firefight (blaster launchers from turn 3)", "from": "^T1: Hidden movement", "to": "^T1: alien turn"},
+    {"name": "firefight turn 2: alien turn", "see": "the Hidden Movement screen with aliens in a firefight (blaster launchers from turn 3)", "from": "^T2: Hidden movement", "to": "^T2: alien turn"},
+    {"name": "firefight turn 3: alien turn", "see": "the Hidden Movement screen with aliens in a firefight (blaster launchers from turn 3)", "from": "^T3: Hidden movement", "to": "^T3: alien turn"},
+    {"name": "firefight turn 4: alien turn", "see": "the Hidden Movement screen with aliens in a firefight (blaster launchers from turn 3)", "from": "^T4: Hidden movement", "to": "^T4: alien turn"},
+    {"name": "firefight turn 5: alien turn", "see": "the Hidden Movement screen with aliens in a firefight (blaster launchers from turn 3)", "from": "^T5: Hidden movement", "to": "^T5: alien turn"},
+    {"name": "firefight turn 6: alien turn", "see": "the Hidden Movement screen with aliens in a firefight (blaster launchers from turn 3)", "from": "^T6: Hidden movement", "to": "^T6: alien turn"},
+    {"name": "firefight turn 7: alien turn", "see": "the Hidden Movement screen with aliens in a firefight (blaster launchers from turn 3)", "from": "^T7: Hidden movement", "to": "^T7: alien turn"},
+    {"name": "firefight turn 8: alien turn", "see": "the Hidden Movement screen with aliens in a firefight (blaster launchers from turn 3)", "from": "^T8: Hidden movement", "to": "^T8: alien turn"},
+    {"name": "firefight: 8 rounds, whole script", "see": "the whole run", "from": "^T1: player: ", "to": "^T9: Turn 9"}
+  ]},
+  {"name": "turn_ju7", "machine": "xt88ega", "opts": "BATTLE SEED 8 MISSION JU7E.PAK RACE RME.PAK", "script": "ONE.TXT", "log": "LOG.TXT", "until": ["T2: Turn 2", "script finished"], "wait": 300, "metrics": [
+    {"name": "program start to battle setup", "see": "XCOMXT typed at the DOS prompt (after the program file is loaded) until the battle set-up starts", "from": "^CPU: ", "to": "^reads before the battle"},
+    {"name": "battle start: packs", "see": "the hourglass before a battle: terrain and unit packs read", "from": "^reads before the battle", "to": "^packs loaded"},
+    {"name": "battle start: map and pictures", "see": "the hourglass: the map made, the pictures loaded", "from": "^packs loaded", "to": "^map and sprites"},
+    {"name": "battle start: units, items, sight", "see": "the hourglass: units placed, floor pictures, tables", "from": "^map and sprites", "to": "^T1: setup:"},
+    {"name": "battle start: first view", "see": "the hourglass: each soldier's first look round, then the first picture", "from": "^T1: setup:", "to": "^ARROW u0"},
+    {"name": "battle start, whole", "see": "from the end of the briefing to the battle waiting for the player", "from": "^reads before the battle", "to": "^ARROW u0"},
+    {"name": "turn 1: end turn to Hidden Movement", "see": "after End Turn, until the Hidden Movement screen", "from": "^T1: player: ", "to": "^T1: Hidden movement"},
+    {"name": "turn 1: alien turn", "see": "the Hidden Movement screen", "from": "^T1: Hidden movement", "to": "^T1: alien turn"},
+    {"name": "turn 1: end of round", "see": "still Hidden Movement: smoke, fire, fuses, recovery", "from": "^T1: alien turn", "to": "^T2: Turn 2"},
+    {"name": "turn 1: new turn shown", "see": "the battle view back for the next turn", "from": "^T2: Turn 2", "to": "^(ARROW u\\d|script finished)"},
+    {"name": "turn 1: End Turn to the next turn, whole", "see": "from End Turn until the player can act again", "from": "^T1: player: ", "to": "^(ARROW u\\d|script finished)", "nto": 1, "after": "^T2: Turn 2"}
+  ]},
+  {"name": "turn_fa1", "machine": "xt88ega", "opts": "BATTLE SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "ONE.TXT", "log": "LOG.TXT", "until": ["T2: Turn 2", "script finished"], "wait": 300, "metrics": [
+    {"name": "battle start, whole", "see": "from the end of the briefing to the battle waiting for the player", "from": "^reads before the battle", "to": "^ARROW u0"},
+    {"name": "turn 1: end turn to Hidden Movement", "see": "after End Turn, until the Hidden Movement screen", "from": "^T1: player: ", "to": "^T1: Hidden movement"},
+    {"name": "turn 1: alien turn", "see": "the Hidden Movement screen", "from": "^T1: Hidden movement", "to": "^T1: alien turn"},
+    {"name": "turn 1: end of round", "see": "still Hidden Movement: smoke, fire, fuses, recovery", "from": "^T1: alien turn", "to": "^T2: Turn 2"},
+    {"name": "turn 1: new turn shown", "see": "the battle view back for the next turn", "from": "^T2: Turn 2", "to": "^(ARROW u\\d|script finished)"},
+    {"name": "turn 1: End Turn to the next turn, whole", "see": "from End Turn until the player can act again", "from": "^T1: player: ", "to": "^(ARROW u\\d|script finished)", "nto": 1, "after": "^T2: Turn 2"}
+  ]},
+  {"name": "save_ju7", "machine": "xt88ega", "opts": "BATTLE SEED 8 MISSION JU7E.PAK RACE RME.PAK", "script": "OPTSAVE.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 300, "metrics": [
+    {"name": "battle save (options, list, name, save, view back)", "see": "Esc, Save Game, the slot and name, until the battle is back", "from": "^T1: options window", "to": "^ARROW u0", "after": "^bsave state"},
+    {"name": "battle save: the file", "see": "the same up to the file written", "from": "^T1: options window", "to": "^save slot"},
+    {"name": "battle load: the file", "see": "Load Game picked until the battle is set up again (hourglass)", "from": "^T1: load slot", "to": "^T1: setup:"},
+    {"name": "battle load, whole", "see": "Load Game picked until the battle waits for the player", "from": "^T1: load slot", "to": "^ARROW u0"}
+  ]},
+  {"name": "walk_ega", "machine": "xt88ega", "opts": "BATTLE PACELOG SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTWALK.TXT", "log": "LOG.TXT", "until": ["walked to", "script finished"], "wait": 300, "metrics": [
+    {"name": "battle start, whole", "see": "from the end of the briefing to the battle waiting for the player", "from": "^reads before the battle", "to": "^ARROW u0"},
+    {"name": "walk order to arrival, 8 steps", "see": "from the click until the soldier stands (path, 8 steps, sight)", "from": "^ARROW u-1", "to": "walked to"},
+    {"name": "walk: first step", "see": "the first step (the walk code and frames are read from the disk)", "log": "^PACE w \\d+ (\\d+)"},
+    {"name": "walk: later steps, median", "see": "one step shown (least time 72 ms at the default speed)", "log": "^PACE w \\d+ (\\d+)", "agg": "median", "skip": 1},
+    {"name": "walk: after the last step", "see": "the wait at the end of the walk (sight, marks)", "from": "^PACE w", "to": "walked to", "nfrom": -1},
+    {"name": "walk: arrival to the arrow", "see": "after the walk until the turn waits again: paths, the panel, the cursor text", "from": "walked to", "to": "^ARROW u\\d"}
+  ]},
+  {"name": "walk_cga", "machine": "xt88cga", "opts": "BATTLE PACELOG SEED 8 MISSION FA1C.PAK RACE RSC.PAK", "script": "OPTWALK.TXT", "log": "LOG.TXT", "until": ["walked to", "script finished"], "wait": 300, "metrics": [
+    {"name": "battle start, whole", "see": "from the end of the briefing to the battle waiting for the player", "from": "^reads before the battle", "to": "^ARROW u0"},
+    {"name": "walk order to arrival, 8 steps", "see": "from the click until the soldier stands (path, 8 steps, sight)", "from": "^ARROW u-1", "to": "walked to"},
+    {"name": "walk: first step", "see": "the first step (the walk code and frames are read from the disk)", "log": "^PACE w \\d+ (\\d+)"},
+    {"name": "walk: later steps, median", "see": "one step shown (least time 72 ms at the default speed)", "log": "^PACE w \\d+ (\\d+)", "agg": "median", "skip": 1},
+    {"name": "walk: after the last step", "see": "the wait at the end of the walk (sight, marks)", "from": "^PACE w", "to": "walked to", "nfrom": -1},
+    {"name": "walk: arrival to the arrow", "see": "after the walk until the turn waits again: paths, the panel, the cursor text", "from": "walked to", "to": "^ARROW u\\d"}
+  ]},
+  {"name": "walk_herc", "machine": "xt88herc", "opts": "BATTLE PACELOG SEED 8 MISSION FA1C.PAK RACE RSC.PAK", "script": "OPTWALK.TXT", "log": "LOG.TXT", "until": ["walked to", "script finished"], "wait": 300, "metrics": [
+    {"name": "battle start, whole", "see": "from the end of the briefing to the battle waiting for the player", "from": "^reads before the battle", "to": "^ARROW u0"},
+    {"name": "walk order to arrival, 8 steps", "see": "from the click until the soldier stands (path, 8 steps, sight)", "from": "^ARROW u-1", "to": "walked to"},
+    {"name": "walk: first step", "see": "the first step (the walk code and frames are read from the disk)", "log": "^PACE w \\d+ (\\d+)"},
+    {"name": "walk: later steps, median", "see": "one step shown (least time 72 ms at the default speed)", "log": "^PACE w \\d+ (\\d+)", "agg": "median", "skip": 1},
+    {"name": "walk: after the last step", "see": "the wait at the end of the walk (sight, marks)", "from": "^PACE w", "to": "walked to", "nfrom": -1},
+    {"name": "walk: arrival to the arrow", "see": "after the walk until the turn waits again: paths, the panel, the cursor text", "from": "walked to", "to": "^ARROW u\\d"}
+  ]},
+  {"name": "walk_v20e", "machine": "v20e", "opts": "BATTLE PACELOG SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTWALK.TXT", "log": "LOG.TXT", "until": ["walked to", "script finished"], "wait": 300, "metrics": [
+    {"name": "battle start, whole", "see": "from the end of the briefing to the battle waiting for the player", "from": "^reads before the battle", "to": "^ARROW u0"},
+    {"name": "walk order to arrival, 8 steps", "see": "from the click until the soldier stands (path, 8 steps, sight)", "from": "^ARROW u-1", "to": "walked to"},
+    {"name": "walk: first step", "see": "the first step (the walk code and frames are read from the disk)", "log": "^PACE w \\d+ (\\d+)"},
+    {"name": "walk: later steps, median", "see": "one step shown (least time 72 ms at the default speed)", "log": "^PACE w \\d+ (\\d+)", "agg": "median", "skip": 1},
+    {"name": "walk: after the last step", "see": "the wait at the end of the walk (sight, marks)", "from": "^PACE w", "to": "walked to", "nfrom": -1},
+    {"name": "walk: arrival to the arrow", "see": "after the walk until the turn waits again: paths, the panel, the cursor text", "from": "walked to", "to": "^ARROW u\\d"}
+  ]},
+  {"name": "shot_ega", "machine": "xt88ega", "opts": "BATTLE PACELOG SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTSNAP.TXT", "log": "LOG.TXT", "until": ["Reaction fire", "PACE h", "script finished"], "wait": 300, "metrics": [
+    {"name": "snap shot: target picked to hit shown", "see": "the shot: flight of the round, the hit", "from": "in sight: Sectoid", "to": "^PACE h"},
+    {"name": "reaction fire: the alien's turn, shot and hit", "see": "the answer: the alien turns, its round flies, the hit", "from": "Reaction fire!", "to": "^PACE h"},
+    {"name": "after the shots: view back", "see": "the battle waiting for the player again", "from": "^PACE h", "to": "script finished", "nfrom": 2}
+  ]},
+  {"name": "door_ega", "machine": "xt88ega", "opts": "BATTLE ALIENS 1 DIFF 0 SEED 16 MISSION UR0E.PAK PACELOG", "script": "OPTDOOR.TXT", "log": "LOG.TXT", "until": ["opened the door", "script finished"], "wait": 200, "metrics": [
+    {"name": "battle start, whole (terror site)", "see": "from the end of the briefing to the battle waiting for the player", "from": "^reads before the battle", "to": "^ARROW u0"},
+    {"name": "walk order to arrival, 8 steps after the sighting stop (city)", "see": "from the second click (the first walk stops on a sighting after one step) until the soldier stands", "from": "^ARROW u-1", "nfrom": 2, "to": "walked to"},
+    {"name": "walk: later steps, median (city)", "see": "one step shown", "log": "^PACE w \\d+ (\\d+)", "agg": "median", "skip": 1},
+    {"name": "walk: arrival to the arrow", "see": "after the walk until the turn waits again: paths, the panel, the cursor text", "from": "walked to", "to": "^ARROW u\\d"},
+    {"name": "turn on the spot (right click)", "see": "the soldier turned to the door", "from": "^RCLICK", "to": "^RCLICK"},
+    {"name": "door: right click to the open door shown", "see": "the door opened and what is behind it shown", "from": "^RCLICK", "to": "script finished", "nfrom": 2}
+  ]},
+  {"name": "fx_ega", "machine": "xt88ega", "opts": "BATTLE GEAR SEED 5 MISSION FA1E.PAK RACE RSE.PAK", "script": "EFFECTS.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 300, "metrics": [
+    {"name": "turn 1: end turn to Hidden Movement", "see": "after End Turn, until the Hidden Movement screen", "from": "^T1: player: ", "to": "^T1: Hidden movement"},
+    {"name": "turn 1: alien turn", "see": "the Hidden Movement screen", "from": "^T1: Hidden movement", "to": "^T1: alien turn"},
+    {"name": "turn 1: end of round", "see": "still Hidden Movement: smoke, fire, fuses, recovery", "from": "^T1: alien turn", "to": "^T2: Turn 2"},
+    {"name": "turn 1: new turn shown", "see": "the battle view back for the next turn", "from": "^T2: Turn 2", "to": "^(ARROW u\\d|script finished)"},
+    {"name": "turn 1: End Turn to the next turn, whole", "see": "from End Turn until the player can act again", "from": "^T1: player: ", "to": "^(ARROW u\\d|script finished)", "nto": 1, "after": "^T2: Turn 2"},
+    {"name": "rocket: aim and flight to the blast", "see": "the cursor moved 8 tiles, the shot, its flight", "from": "Reloaded: Large Rocket", "to": "^T2: blast picture"},
+    {"name": "explosion (power 100): picture to damage done", "see": "the explosion on the screen, the damage worked out", "from": "^T2: blast picture", "to": "^blast at"},
+    {"name": "after the explosion: view back", "see": "the view drawn with the crater, the next soldier picked", "from": "^blast at", "to": "^ARROW u3"},
+    {"name": "incendiary round: picture to fires set", "see": "the round bursts, fire on the tiles", "from": "^T2: blast picture", "to": "^incendiary at", "nfrom": 2},
+    {"name": "turn 2: end of round with 96 smoke + 11 fire", "see": "Hidden Movement: smoke and fire spread and burn", "from": "^T2: alien turn", "to": "^T3: Turn 3"},
+    {"name": "turn 3: new turn shown, in smoke and fire", "see": "the battle view back, full of smoke", "from": "^T3: Turn 3", "to": "^ARROW u\\d"},
+    {"name": "turn 3: alien turn with reaction fire and 2 blasts", "see": "the alien turn seen: shots, incendiary blasts", "from": "^T3: Hidden movement", "to": "^T3: alien turn"},
+    {"name": "turn 4: end of round with 96 smoke + 22 fire", "see": "Hidden Movement: smoke and fire", "from": "^T4: alien turn", "to": "^T5: Turn 5"},
+    {"name": "5 turns of effects, whole script", "see": "five turns with walks, a rocket, incendiaries, a proximity grenade", "from": "^T1: Small Scout", "to": "script finished"}
+  ]},
+  {"name": "night_ega", "machine": "xt88ega", "opts": "BATTLE GEAR NIGHT SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "NIGHTLIT.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 300, "metrics": [
+    {"name": "night: battle start: first view", "see": "each soldier's first look round at night, the first picture", "from": "^T1: setup:", "to": "^ARROW u0"},
+    {"name": "night: walk order to arrival", "see": "a long walk at night until the TUs run out", "from": "^ARROW u-1", "to": "walked to", "nfrom": 2},
+    {"name": "night: incendiary: picture to fires set", "see": "the round bursts, the fire lights the place", "from": "blast picture", "to": "^incendiary at"},
+    {"name": "night: view after the fire, next target", "see": "the lit view drawn, the alien found", "from": "^incendiary at", "to": "in sight: "}
+  ]},
+  {"name": "night_v20e", "machine": "v20e", "opts": "BATTLE GEAR NIGHT SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "NIGHTLIT.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 300, "metrics": [
+    {"name": "night light: battle start: first view", "see": "UMB/EMS: the same with the night light on", "from": "^T1: setup:", "to": "^ARROW u0"},
+    {"name": "night light: walk order to arrival", "see": "UMB/EMS", "from": "^ARROW u-1", "to": "walked to", "nfrom": 2},
+    {"name": "night light: incendiary: picture to fires set", "see": "UMB/EMS", "from": "blast picture", "to": "^incendiary at"},
+    {"name": "night light: view after the fire, next target", "see": "UMB/EMS", "from": "^incendiary at", "to": "in sight: "}
+  ]},
+  {"name": "ui_ega", "machine": "xt88ega", "opts": "SEED 2", "script": "OPTUI.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 300, "metrics": [
+    {"name": "new game: menu to the geoscape", "see": "New Game chosen until the world map is there", "from": "^new game", "to": "^MAP view"},
+    {"name": "geoscape: a key that changes nothing", "see": "the least wait a geoscape key costs", "from": "^MAP view", "to": "^MAP view", "nfrom": 1},
+    {"name": "geoscape: 4 scrolls at 1x", "see": "the map turned four times", "from": "^MAP view", "to": "^MAP view", "nfrom": 2, "nto": 4},
+    {"name": "geoscape: zoom 1x to 2x", "see": "the map zoomed in", "from": "^MAP view", "to": "^MAP view", "nfrom": 6},
+    {"name": "geoscape: 2 scrolls at 2x", "see": "the map turned twice at 2x", "from": "^MAP view", "to": "^MAP view", "nfrom": 7, "nto": 2},
+    {"name": "geoscape: zoom 2x to 4x", "see": "the map zoomed in", "from": "^MAP view", "to": "^MAP view", "nfrom": 9},
+    {"name": "geoscape: 2 scrolls at 4x", "see": "the map turned twice at 4x", "from": "^MAP view", "to": "^MAP view", "nfrom": 10, "nto": 2},
+    {"name": "geoscape: zoom 4x to 2x", "see": "the map zoomed out", "from": "^MAP view", "to": "^MAP view", "nfrom": 12},
+    {"name": "geoscape: zoom 2x to 1x", "see": "the map zoomed out", "from": "^MAP view", "to": "^MAP view", "nfrom": 13},
+    {"name": "funding screen and back", "see": "Funding opened and closed", "from": "^MAP view", "to": "^MAP view", "nfrom": 15},
+    {"name": "graphs and back", "see": "Graphs opened and closed", "from": "^MAP view", "to": "^MAP view", "nfrom": 16},
+    {"name": "UFOpaedia and back", "see": "the UFOpaedia opened and closed", "from": "^MAP view", "to": "^MAP view", "nfrom": 17},
+    {"name": "save game (list, name, save)", "see": "Save Game: the list, the name typed, the file written", "from": "^MAP view", "to": "^MAP view", "nfrom": 18},
+    {"name": "geoscape to the basescape", "see": "Bases clicked (the base view is drawn after this)", "from": "^MAP view", "to": "^BASE menu", "nfrom": 19},
+    {"name": "base: Base Information and back", "see": "the base view drawn, the screen opened, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 1},
+    {"name": "base: Soldiers and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 2},
+    {"name": "base: Build Facilities and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 3},
+    {"name": "base: Research and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 4},
+    {"name": "base: Manufacture and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 5},
+    {"name": "base: Transfer and back", "see": "the base view, the screen, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 6},
+    {"name": "base: Purchase/Recruit and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 7},
+    {"name": "base: Sell/Sack and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 8},
+    {"name": "base: Equip Craft and back", "see": "the base view, the craft list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 9},
+    {"name": "basescape back to the geoscape", "see": "the base view drawn, then the world map again", "from": "^BASE menu", "to": "^MAP view", "nfrom": 10},
+    {"name": "load game (list, load)", "see": "Load Game: the list, the file read, the map", "from": "^MAP view", "to": "^MAP view", "nfrom": 20},
+    {"name": "24 hours at the 1 hour speed", "see": "the clock running: 24 steps (the game shows at most 8 a second)", "from": "^MAP view", "to": "^MAP view", "nfrom": 21},
+    {"name": "5 days at the 1 day speed", "see": "the clock running: 5 day steps (and one hour step)", "from": "^MAP view", "to": "^MAP view", "nfrom": 22},
+    {"name": "load game again (list, load)", "see": "Load Game from the running geoscape (and one day step)", "from": "^MAP view", "to": "^MAP view", "nfrom": 23}
+  ]},
+  {"name": "ui_cga", "machine": "xt88cga", "opts": "SEED 2", "script": "OPTUI.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 300, "metrics": [
+    {"name": "new game: menu to the geoscape", "see": "New Game chosen until the world map is there", "from": "^new game", "to": "^MAP view"},
+    {"name": "geoscape: a key that changes nothing", "see": "the least wait a geoscape key costs", "from": "^MAP view", "to": "^MAP view", "nfrom": 1},
+    {"name": "geoscape: 4 scrolls at 1x", "see": "the map turned four times", "from": "^MAP view", "to": "^MAP view", "nfrom": 2, "nto": 4},
+    {"name": "geoscape: zoom 1x to 2x", "see": "the map zoomed in", "from": "^MAP view", "to": "^MAP view", "nfrom": 6},
+    {"name": "geoscape: 2 scrolls at 2x", "see": "the map turned twice at 2x", "from": "^MAP view", "to": "^MAP view", "nfrom": 7, "nto": 2},
+    {"name": "geoscape: zoom 2x to 4x", "see": "the map zoomed in", "from": "^MAP view", "to": "^MAP view", "nfrom": 9},
+    {"name": "geoscape: 2 scrolls at 4x", "see": "the map turned twice at 4x", "from": "^MAP view", "to": "^MAP view", "nfrom": 10, "nto": 2},
+    {"name": "geoscape: zoom 4x to 2x", "see": "the map zoomed out", "from": "^MAP view", "to": "^MAP view", "nfrom": 12},
+    {"name": "geoscape: zoom 2x to 1x", "see": "the map zoomed out", "from": "^MAP view", "to": "^MAP view", "nfrom": 13},
+    {"name": "funding screen and back", "see": "Funding opened and closed", "from": "^MAP view", "to": "^MAP view", "nfrom": 15},
+    {"name": "graphs and back", "see": "Graphs opened and closed", "from": "^MAP view", "to": "^MAP view", "nfrom": 16},
+    {"name": "UFOpaedia and back", "see": "the UFOpaedia opened and closed", "from": "^MAP view", "to": "^MAP view", "nfrom": 17},
+    {"name": "save game (list, name, save)", "see": "Save Game: the list, the name typed, the file written", "from": "^MAP view", "to": "^MAP view", "nfrom": 18},
+    {"name": "geoscape to the basescape", "see": "Bases clicked (the base view is drawn after this)", "from": "^MAP view", "to": "^BASE menu", "nfrom": 19},
+    {"name": "base: Base Information and back", "see": "the base view drawn, the screen opened, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 1},
+    {"name": "base: Soldiers and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 2},
+    {"name": "base: Build Facilities and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 3},
+    {"name": "base: Research and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 4},
+    {"name": "base: Manufacture and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 5},
+    {"name": "base: Transfer and back", "see": "the base view, the screen, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 6},
+    {"name": "base: Purchase/Recruit and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 7},
+    {"name": "base: Sell/Sack and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 8},
+    {"name": "base: Equip Craft and back", "see": "the base view, the craft list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 9},
+    {"name": "basescape back to the geoscape", "see": "the base view drawn, then the world map again", "from": "^BASE menu", "to": "^MAP view", "nfrom": 10},
+    {"name": "load game (list, load)", "see": "Load Game: the list, the file read, the map", "from": "^MAP view", "to": "^MAP view", "nfrom": 20},
+    {"name": "24 hours at the 1 hour speed", "see": "the clock running: 24 steps (the game shows at most 8 a second)", "from": "^MAP view", "to": "^MAP view", "nfrom": 21},
+    {"name": "5 days at the 1 day speed", "see": "the clock running: 5 day steps (and one hour step)", "from": "^MAP view", "to": "^MAP view", "nfrom": 22},
+    {"name": "load game again (list, load)", "see": "Load Game from the running geoscape (and one day step)", "from": "^MAP view", "to": "^MAP view", "nfrom": 23}
+  ]},
+  {"name": "ui_herc", "machine": "xt88herc", "opts": "SEED 2", "script": "OPTUI.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 300, "metrics": [
+    {"name": "new game: menu to the geoscape", "see": "New Game chosen until the world map is there", "from": "^new game", "to": "^MAP view"},
+    {"name": "geoscape: a key that changes nothing", "see": "the least wait a geoscape key costs", "from": "^MAP view", "to": "^MAP view", "nfrom": 1},
+    {"name": "geoscape: 4 scrolls at 1x", "see": "the map turned four times", "from": "^MAP view", "to": "^MAP view", "nfrom": 2, "nto": 4},
+    {"name": "geoscape: zoom 1x to 2x", "see": "the map zoomed in", "from": "^MAP view", "to": "^MAP view", "nfrom": 6},
+    {"name": "geoscape: 2 scrolls at 2x", "see": "the map turned twice at 2x", "from": "^MAP view", "to": "^MAP view", "nfrom": 7, "nto": 2},
+    {"name": "geoscape: zoom 2x to 4x", "see": "the map zoomed in", "from": "^MAP view", "to": "^MAP view", "nfrom": 9},
+    {"name": "geoscape: 2 scrolls at 4x", "see": "the map turned twice at 4x", "from": "^MAP view", "to": "^MAP view", "nfrom": 10, "nto": 2},
+    {"name": "geoscape: zoom 4x to 2x", "see": "the map zoomed out", "from": "^MAP view", "to": "^MAP view", "nfrom": 12},
+    {"name": "geoscape: zoom 2x to 1x", "see": "the map zoomed out", "from": "^MAP view", "to": "^MAP view", "nfrom": 13},
+    {"name": "funding screen and back", "see": "Funding opened and closed", "from": "^MAP view", "to": "^MAP view", "nfrom": 15},
+    {"name": "graphs and back", "see": "Graphs opened and closed", "from": "^MAP view", "to": "^MAP view", "nfrom": 16},
+    {"name": "UFOpaedia and back", "see": "the UFOpaedia opened and closed", "from": "^MAP view", "to": "^MAP view", "nfrom": 17},
+    {"name": "save game (list, name, save)", "see": "Save Game: the list, the name typed, the file written", "from": "^MAP view", "to": "^MAP view", "nfrom": 18},
+    {"name": "geoscape to the basescape", "see": "Bases clicked (the base view is drawn after this)", "from": "^MAP view", "to": "^BASE menu", "nfrom": 19},
+    {"name": "base: Base Information and back", "see": "the base view drawn, the screen opened, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 1},
+    {"name": "base: Soldiers and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 2},
+    {"name": "base: Build Facilities and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 3},
+    {"name": "base: Research and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 4},
+    {"name": "base: Manufacture and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 5},
+    {"name": "base: Transfer and back", "see": "the base view, the screen, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 6},
+    {"name": "base: Purchase/Recruit and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 7},
+    {"name": "base: Sell/Sack and back", "see": "the base view, the list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 8},
+    {"name": "base: Equip Craft and back", "see": "the base view, the craft list, closed", "from": "^BASE menu", "to": "^BASE menu", "nfrom": 9},
+    {"name": "basescape back to the geoscape", "see": "the base view drawn, then the world map again", "from": "^BASE menu", "to": "^MAP view", "nfrom": 10},
+    {"name": "load game (list, load)", "see": "Load Game: the list, the file read, the map", "from": "^MAP view", "to": "^MAP view", "nfrom": 20},
+    {"name": "24 hours at the 1 hour speed", "see": "the clock running: 24 steps (the game shows at most 8 a second)", "from": "^MAP view", "to": "^MAP view", "nfrom": 21},
+    {"name": "5 days at the 1 day speed", "see": "the clock running: 5 day steps (and one hour step)", "from": "^MAP view", "to": "^MAP view", "nfrom": 22},
+    {"name": "load game again (list, load)", "see": "Load Game from the running geoscape (and one day step)", "from": "^MAP view", "to": "^MAP view", "nfrom": 23}
+  ]},
+  {"name": "camp_ega", "machine": "xt88ega", "opts": "DEBUG SEEALL SEED 2", "script": "OPTCAMP.TXT", "log": "LOG.TXT", "until": ["^BRIEF ", "^result 1 ", "Success: 1 aliens killed", "script finished"], "wait": 300, "metrics": [
+    {"name": "air combat (cautious, to the crash)", "see": "the interception window, one frame a key", "from": "^AIR Intercepting", "to": "^AIR UFO CRASH LANDS"},
+    {"name": "landing: Yes to the briefing", "see": "the equipment taken, the briefing drawn", "from": "ready to land near", "to": "^BRIEF "},
+    {"name": "campaign battle start: briefing to the battle", "see": "the hourglass after the briefing (the inventory screen passes by itself here)", "from": "^BRIEF ", "to": "^T1: [A-Z][a-z]+ Scout"},
+    {"name": "campaign: 10 cursor steps, soldier selected", "see": "the cursor moved by keys over 4 tiles at night: box, path cost text, panel figures with the rank picture", "from": "^CLICK 200 190", "nfrom": 2, "to": "^CLICK"},
+    {"name": "campaign: hand menu, click to menu shown", "see": "a click on the right hand until its action menu waits", "from": "^CLICK 290 170", "to": "^CLICK"},
+    {"name": "campaign: hand menu, snap shot picked to target cursor", "see": "an action picked with the mouse until the view waits for the target", "from": "^CLICK 150 100", "to": "^CLICK"},
+    {"name": "battle end to the debriefing", "see": "the hourglass after the last alien: loot, recovery, the debriefing screen", "from": "^result 1 ", "to": "^DEBRIEF TOTAL"},
+    {"name": "debriefing to the geoscape", "see": "the debriefing closed, the world map back", "from": "^DEBRIEF TOTAL", "to": "Success: "}
+  ]},
+  {"name": "hand_ju7", "machine": "xt88ega", "opts": "BATTLE PACELOG SEED 8 SQUAD 14 MISSION JU7E.PAK RACE RME.PAK", "script": "OPTHAND.TXT", "log": "LOG.TXT", "until": ["walked to", "^RCLICK", "script finished"], "wait": 300, "metrics": [
+    {"name": "walk order to arrival, 8 steps (14 soldiers, 17 aliens)", "see": "from the click until the soldier stands (path, 8 steps, sight of every unit per step)", "from": "^ARROW u-1", "to": "walked to"},
+    {"name": "walk: first step", "see": "the first step (the walk code and frames are read from the disk)", "log": "^PACE w \\d+ (\\d+)"},
+    {"name": "walk: later steps, median", "see": "one step shown (least time 72 ms at the default speed)", "log": "^PACE w \\d+ (\\d+)", "agg": "median", "skip": 1},
+    {"name": "walk: after the last step", "see": "the wait at the end of the walk (sight, marks, the view on level 0)", "from": "^PACE w", "to": "walked to", "nfrom": -1},
+    {"name": "walk: arrival to the arrow", "see": "after the walk until the turn waits again: paths, the panel, the cursor text", "from": "walked to", "to": "^ARROW u\\d"},
+    {"name": "10 cursor steps, soldier selected", "see": "the cursor moved by keys over 4 tiles: box, path cost text, panel figures", "from": "^CLICK 200 190", "nfrom": 2, "to": "^CLICK"},
+    {"name": "hand menu: click to menu shown", "see": "a click on the right hand until its action menu waits", "from": "^CLICK 290 170", "to": "^CLICK"},
+    {"name": "hand menu: snap shot picked to target cursor", "see": "an action picked with the mouse until the view waits for the target (a full redraw today)", "from": "^CLICK 150 100", "to": "^CLICK"},
+    {"name": "hand menu: cancelled by right click", "see": "the menu closed with nothing picked (a full redraw today)", "from": "^RCLICK", "to": "^CLICK"}
+  ]},
+  {"name": "mini_ju7", "machine": "xt88ega", "opts": "BATTLE SEED 8 MISSION JU7E.PAK RACE RME.PAK", "script": "OPTMINI.TXT", "log": "LOG.TXT", "until": ["^minimap level", "^CLICK 48 16", "script finished"], "wait": 300, "metrics": [
+    {"name": "minimap: key to its frame", "see": "the map button or Q until the minimap's frame is drawn (its pictures read)", "from": "^CLICK 200 190", "nfrom": 2, "to": "^minimap level"},
+    {"name": "minimap: frame to the map drawn", "see": "the minimap's 54 x 37 cells drawn (level 2 of 4 over the squad), until it waits for a key", "from": "^minimap level", "to": "^CLICK 48 16"},
+    {"name": "minimap: click to the map centred again", "see": "a click in the minimap's corner: the whole minimap drawn again (over the battleship, no unit marker: the end screen does not animate)", "from": "^CLICK 48 16", "to": "script finished"}
+  ]},
+  {"name": "hand_cga", "machine": "xt88cga", "opts": "BATTLE SEED 8 MISSION FA1C.PAK RACE RSC.PAK", "script": "OPTHAND2.TXT", "log": "LOG.TXT", "until": ["^RCLICK", "script finished"], "wait": 300, "metrics": [
+    {"name": "10 cursor steps, soldier selected", "see": "the cursor moved by keys over 4 tiles: box, path cost text, panel figures", "from": "^CLICK 200 190", "nfrom": 2, "to": "^CLICK"},
+    {"name": "hand menu: click to menu shown", "see": "a click on the right hand until its action menu waits", "from": "^CLICK 290 170", "to": "^CLICK"},
+    {"name": "hand menu: snap shot picked to target cursor", "see": "an action picked with the mouse until the view waits for the target (a full redraw today)", "from": "^CLICK 150 100", "to": "^CLICK"},
+    {"name": "hand menu: cancelled by right click", "see": "the menu closed with nothing picked (a full redraw today)", "from": "^RCLICK", "to": "^CLICK"}
+  ]},
+  {"name": "aim_ega", "machine": "xt88ega", "opts": "BATTLE PACELOG SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTAIM.TXT", "log": "LOG.TXT", "until": ["throws at", "script finished"], "wait": 300, "metrics": [
+    {"name": "snap shot at a bare floor: key to the round's flight", "see": "aim (canTargetTile finds no point: 41 voxel lines), line of fire, the paced flight (PACE f)", "from": "^CLICK 200 190", "nfrom": 3, "to": "^PACE f"},
+    {"name": "snap shot at a bare floor, whole", "see": "the key until the view waits again (hit, panel)", "from": "^CLICK 200 190", "nfrom": 3, "to": "^CLICK"},
+    {"name": "snap shot at a wall: key to the round's flight", "see": "aim at a north wall (found on the first line), line of fire, the paced flight", "from": "^CLICK 200 190", "nfrom": 5, "to": "^PACE f"},
+    {"name": "snap shot at a wall, whole", "see": "the key until the view waits again", "from": "^CLICK 200 190", "nfrom": 5, "to": "^CLICK"},
+    {"name": "throw: key to the grenade's landing", "see": "the belt grenade to hand, the throw's arcs (vox_throw), the turn, where it lands", "from": "^CLICK 200 190", "nfrom": 7, "to": "throws at"},
+    {"name": "throw, whole", "see": "the key until the view waits again (the grenade placed, primed for the end of turn)", "from": "^CLICK 200 190", "nfrom": 7, "to": "^CLICK"},
+    {"name": "inventory: I to the screen drawn", "see": "the inventory opened from the battle (section, pictures, the soldier)", "from": "^CLICK 200 190", "nfrom": 8, "to": "script finished"}
+  ]},
+  {"name": "hand_herc", "machine": "xt88herc", "opts": "BATTLE SEED 8 MISSION FA1C.PAK RACE RSC.PAK", "script": "OPTHAND2.TXT", "log": "LOG.TXT", "until": ["^RCLICK", "script finished"], "wait": 300, "metrics": [
+    {"name": "10 cursor steps, soldier selected", "see": "the cursor moved by keys over 4 tiles: box, path cost text, panel figures", "from": "^CLICK 200 190", "nfrom": 2, "to": "^CLICK"},
+    {"name": "hand menu: click to menu shown", "see": "a click on the right hand until its action menu waits", "from": "^CLICK 290 170", "to": "^CLICK"},
+    {"name": "hand menu: snap shot picked to target cursor", "see": "an action picked with the mouse until the view waits for the target (a full redraw today)", "from": "^CLICK 150 100", "to": "^CLICK"},
+    {"name": "hand menu: cancelled by right click", "see": "the menu closed with nothing picked (a full redraw today)", "from": "^RCLICK", "to": "^CLICK"}
+  ]},
+  {"name": "scr_base_ega", "machine": "xt88ega", "opts": "SEED 2", "script": "OPTSCR1.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_base_cga", "machine": "xt88cga", "opts": "SEED 2", "script": "OPTSCR1.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_base_herc", "machine": "xt88herc", "opts": "SEED 2", "script": "OPTSCR1.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_info_ega", "machine": "xt88ega", "opts": "SEED 2", "script": "OPTSCR2.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_buy_ega", "machine": "xt88ega", "opts": "SEED 2", "script": "OPTSCR3.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_fund_ega", "machine": "xt88ega", "opts": "SEED 2", "script": "OPTSCR4.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_pedia_ega", "machine": "xt88ega", "opts": "SEED 2", "script": "OPTSCR5.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_sold_ega", "machine": "xt88ega", "opts": "SEED 2", "script": "OPTSCR6.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_air_ega", "machine": "xt88ega", "opts": "DEBUG SEEALL SEED 2", "script": "OPTAIR.TXT", "log": "LOG.TXT", "until": ["^AIR result"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "blast_ega", "machine": "xt88ega", "opts": "BATTLE DEBUG SEEALL SHOTLOG SEED 1 MISSION FA2E.PAK RACE RSE.PAK", "script": "OPTBL1.TXT", "log": "LOG.TXT", "until": ["^blast at", "^blast at", "script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "blast_cga", "machine": "xt88cga", "opts": "BATTLE DEBUG SEEALL SHOTLOG SEED 1 MISSION FA2C.PAK RACE RSC.PAK", "script": "OPTBL1.TXT", "log": "LOG.TXT", "until": ["^blast at", "^blast at", "script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "blast_herc", "machine": "xt88herc", "opts": "BATTLE DEBUG SEEALL SHOTLOG SEED 1 MISSION FA2C.PAK RACE RSC.PAK", "script": "OPTBL1.TXT", "log": "LOG.TXT", "until": ["^blast at", "^blast at", "script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "blast_v20e", "machine": "v20e", "opts": "BATTLE DEBUG SEEALL SHOTLOG SEED 1 MISSION FA2E.PAK RACE RSE.PAK", "script": "OPTBL2.TXT", "log": "LOG.TXT", "until": ["^blast at", "script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "blast_fall", "machine": "xt88ega", "opts": "BATTLE DEBUG SEEALL SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTBL3.TXT", "log": "LOG.TXT", "until": ["^blast at", "falls to", "script finished"], "wait": 200, "same_only": true, "metrics": [
+  ]},
+  {"name": "blast_terr", "machine": "xt88ega", "opts": "BATTLE DEBUG SEEALL SEED 2 MISSION JU7E.PAK RACE RME.PAK", "script": "OPTBL4.TXT", "log": "LOG.TXT", "until": ["terrain explodes", "^blast at", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "blast_crash", "machine": "xt88ega", "opts": "BATTLE CRASHED DIFF 0 SEEALL SEED 5 MISSION FA5E.PAK RACE RSE.PAK", "script": "OPTBL5.TXT", "log": "LOG.TXT", "until": ["^blast at", "^crash: ", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "blast_prox", "machine": "xt88ega", "opts": "BATTLE GEAR SEED 5 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTBL6.TXT", "log": "LOG.TXT", "until": ["Proximity grenade armed", "goes off", "^blast at", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "hpick_ega", "machine": "xt88ega", "opts": "BATTLE SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTHPICK.TXT", "log": "LOG.TXT", "until": ["script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "hcancel_ega", "machine": "xt88ega", "opts": "BATTLE SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTHAND2.TXT", "log": "LOG.TXT", "until": ["^RCLICK", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "prime_ega", "machine": "xt88ega", "opts": "BATTLE SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTPRIME.TXT", "log": "LOG.TXT", "until": ["primes", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "primec_ega", "machine": "xt88ega", "opts": "BATTLE SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTPRIMC.TXT", "log": "LOG.TXT", "until": ["^RCLICK", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "prime_cga", "machine": "xt88cga", "opts": "BATTLE SEED 8 MISSION FA1C.PAK RACE RSC.PAK", "script": "OPTPRIME.TXT", "log": "LOG.TXT", "until": ["primes", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "prime_herc", "machine": "xt88herc", "opts": "BATTLE SEED 8 MISSION FA1C.PAK RACE RSC.PAK", "script": "OPTPRIME.TXT", "log": "LOG.TXT", "until": ["primes", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "wp_ega", "screen": false, "machine": "xt88ega", "opts": "BATTLE HWP 15 SEEALL SEED 8 MISSION FA1E.PAK RACE RSE.PAK", "script": "OPTWAYPT.TXT", "log": "LOG.TXT", "until": ["waypoint 2", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "wp_cga", "screen": false, "machine": "xt88cga", "opts": "BATTLE HWP 15 SEEALL SEED 8 MISSION FA1C.PAK RACE RSC.PAK", "script": "OPTWAYPT.TXT", "log": "LOG.TXT", "until": ["waypoint 2", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_pnl1_ega", "machine": "xt88ega", "opts": "DEBUG SEEALL SEED 2", "script": "OPTPNL1.TXT", "log": "LOG.TXT", "until": ["^BRIEF ", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_pnl2_ega", "machine": "xt88ega", "opts": "DEBUG SEEALL SEED 2", "script": "OPTPNL2.TXT", "log": "LOG.TXT", "until": ["^BRIEF ", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_pnl3_ega", "machine": "xt88ega", "opts": "DEBUG SEEALL SEED 2", "script": "OPTPNL3.TXT", "log": "LOG.TXT", "until": ["^BRIEF ", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_pnl4_ega", "machine": "xt88ega", "opts": "DEBUG SEEALL SEED 2", "script": "OPTPNL4.TXT", "log": "LOG.TXT", "until": ["^BRIEF ", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_pnl2_cga", "machine": "xt88cga", "opts": "DEBUG SEEALL SEED 2", "script": "OPTPNL2.TXT", "log": "LOG.TXT", "until": ["^BRIEF ", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_pnl3_cga", "machine": "xt88cga", "opts": "DEBUG SEEALL SEED 2", "script": "OPTPNL3.TXT", "log": "LOG.TXT", "until": ["^BRIEF ", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]},
+  {"name": "scr_pnl2_herc", "machine": "xt88herc", "opts": "DEBUG SEEALL SEED 2", "script": "OPTPNL2.TXT", "log": "LOG.TXT", "until": ["^BRIEF ", "script finished"], "wait": 300, "same_only": true, "metrics": [
+  ]}
+ ]
+}

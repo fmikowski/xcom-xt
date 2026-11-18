@@ -1,0 +1,575 @@
+XCOM-XT Alpha 0.5.1 - MANUAL
+============================
+
+ 1. What XCOM-XT is
+ 2. Status of this alpha: what works, what does not
+ 3. Choosing your hardware: what to expect at each level
+ 4. Making the data: XCOMCONV
+ 5. Installing on the DOS PC
+ 6. The three programs
+ 7. Video modes
+ 8. Memory: what the game does with what you have
+ 9. Sound
+10. Launch options
+11. Playing: keys and mouse
+12. Differences from the DOS original
+13. Speed
+14. Troubleshooting and reporting bugs
+15. Licence and source
+
+
+1. WHAT XCOM-XT IS
+------------------
+XCOM-XT is a new engine, written from scratch, that plays X-COM: UFO
+Defense (MicroProse, 1994) on PCs far older than the original needs. The
+target is a 10 MHz turbo XT (8088 or NEC V20, 640 KB, EGA) with a hard
+disk; the same game also runs in CGA and Hercules, and as a 256-colour VGA
+version on a 286 or better.
+
+The rules, numbers and screens follow the DOS game (with OpenXcom's
+documented rules as the reference for the details). What was cut to fit
+an XT is mostly animation and graphics, not game mechanics: soldiers jump
+from tile to tile instead of sliding, explosions are one picture, and the
+world is a flat map instead of a rotating globe. Section 12 lists the
+differences.
+
+There is no game data in the download. XCOMCONV.EXE, a Windows program,
+turns your own copy of the game into the packs the DOS program reads.
+
+
+2. STATUS OF THIS ALPHA
+-----------------------
+Alpha 0.5.1 is the first public build. The whole campaign can be played
+from the first base to Cydonia, but expect bugs, and expect that saved
+games and packs from this version will not work with later ones.
+
+Works:
+ - The full campaign: geoscape with time, alien missions of every DOS
+   type (research, harvest, abduction, infiltration, alien base, terror,
+   retaliation, supply), UFOs on their original flight paths, radar,
+   interception and air combat, 16 funding countries with monthly
+   reports, pacts, losing the game after two bad months.
+ - Up to 8 bases on DOS's 6x6 grid, with facilities, staff, stores,
+   research, manufacture, purchase, sell, transfers, hangars, psi
+   training, alien containment and base defence against a battleship.
+ - All three transports (Skyranger, Lightning, Avenger) with their own
+   maps and seats, the five tanks and hovertanks (HWPs), interceptors and
+   their weapons, Firestorm, Lightning, Avenger.
+ - Battles on all 6 terrains with all 8 UFO types, terror sites in cities
+   with civilians, alien bases, both stages of Cydonia; 5 alien races and
+   their terror units; fog of war, time units, reaction fire, morale,
+   panic, psionics, stun and live captures, smoke, fire, explosions that
+   destroy terrain, night battles with flares.
+ - Research tree, UFOpaedia with the game's own texts and pictures,
+   soldier stats and experience, the debriefing and the score.
+ - 10 save slots, including saving in the middle of a battle.
+ - The intro movie and the end slides; the original AdLib music.
+ - Quick battles (the BATTLE option), like OpenXcom's New Battle.
+
+Partly done or limited:
+ - Sound Blaster: music and sound effects play on its FM chip (as on an
+   AdLib). The original digitised effects play only when there is memory
+   outside the 640 KB to hold them (an upper memory block of 8 KB or more,
+   or XMS on a 286 or better). Without it you get FM or PC speaker
+   versions of the effects. The intro has no digitised effects at all.
+ - The VGA version is newer than the others and has had less play.
+ - Some rare limits on the biggest battles of a plain 640 KB XT (a tank
+   may have to stay in the craft, floor items drawn as marks): see
+   section 8. Upper memory or EMS/XMS removes them.
+
+Not tested:
+ - Hercules has only been run in an emulator, never on a real card or a
+   real mono monitor.
+ - XCOMV20.EXE has never run on a real NEC V20 (the emulators' V20 is not
+   exact). XCOMXT.EXE is the safe choice on a V20.
+ - Most speed and memory figures in this manual come from the 86Box
+   emulator. Real machines can be faster or slower, especially disks,
+   upper memory on 8-bit cards and 16-bit Sound Blasters in an XT.
+ - DOSBox and other emulators have had little or no testing.
+
+
+3. CHOOSING YOUR HARDWARE: WHAT TO EXPECT AT EACH LEVEL
+-------------------------------------------------------
+All levels play the same game with the same rules. What changes is speed,
+colours and how many of the memory compromises you meet.
+
+Level 1 - plain XT: 8088 or V20 at 8-10 MHz, 640 KB, hard disk.
+  Video: EGA (with 256 KB) looks best; CGA (4 colours) and Hercules
+  (greys) work. Free memory about 560-570 KB (DOS, a mouse driver and
+  nothing else). Program: XCOMXT.EXE.
+  Expect: alien turns of 5-20 seconds on a busy map, up to about 30 s on
+  a terror site with civilians; a full battle redraw about 0.6 s on EGA.
+  Walking shows 2 leg frames. In the biggest battles (the jungle
+  battleship, terror sites with tanks) some pictures are shared or read
+  from disk as drawn (section 8). Night battles use one dark palette.
+
+Level 2 - XT with upper memory and/or an EMS board.
+  Upper memory blocks (UMBs) from a memory board and its UMB driver, or
+  DOS 5+ with DOS=UMB on a machine that supports it. EMS from a LIM 3.2 or
+  4.0 board (for example a Lo-tech EMS board) and its driver.
+  Expect, with a UMB of 44 KB or more: none of the big-battle compromises
+  showed in testing, less code loading from disk, Sound Blaster
+  digitised effects, 4 leg frames when walking, and on EGA two levels of
+  night light. With EMS (or XMS): up to 2 MB of what the game reads stays
+  in memory, so screens and battle rounds you have seen before read
+  almost nothing from disk (campaign trips to a battle and back roughly
+  twice as fast in the reading part), and battle views redraw about 3 to
+  4 times faster.
+
+Level 3 - 286 (or 386, 486) with VGA and HIMEM.SYS.
+  Program: XCOM286.EXE. With a VGA card, DOS 5 or later, HIMEM.SYS and
+  256 KB or more of free XMS, the game picks the 256-colour VGA version
+  by itself. Exact sight and AI (section 12) are on by default here.
+  Expect on an 8 MHz 286: a full battle redraw about 0.2-0.3 s, the first
+  alien turn of a jungle battle about 20 s with exact mode on. Sound
+  Blaster digitised effects come from XMS. DOS=HIGH helps memory.
+  The same PC can also play the EGA version (XCOM286 EGA).
+
+Faster PCs: 386 and up run XCOM286.EXE and everything is quicker. Speeds
+in the game options keep DOS's timing, so the game does not race.
+
+
+4. MAKING THE DATA: XCOMCONV
+----------------------------
+XCOMCONV.EXE runs on 64-bit Windows and needs nothing else installed. It
+reads the original game's files and writes the packs XCOM-XT uses.
+
+  XCOMCONV [game folder] [-o output folder] [options]
+
+ - With no folder it looks for Steam and GOG installs, then asks. The
+   folder is the one that holds GEODATA, GEOGRAPH, MAPS, ROUTES, SOUND,
+   TERRAIN, UFOGRAPH, UFOINTRO and UNITS; a Steam or GOG install folder
+   around it also works (it looks one or two levels down). A copy of the
+   CD's game folder works too.
+ - It checks that the data is the DOS 1.4 version and stops with a clear
+   message if files are missing or the version is wrong. Other versions
+   (the Windows edition, Terror from the Deep, mods) are not supported.
+ - Output: a PACKS folder next to XCOMCONV.EXE (or the -o folder). Re-run
+   it any time: it overwrites the old packs.
+ - It takes about 2 minutes on a recent PC (longer on an old one) and
+   runs the EGA, CGA and VGA conversions side by side.
+
+Options:
+  -o DIR             write the packs to DIR instead of PACKS
+  --skip-check       try data that is not exactly DOS 1.4 (no guarantee)
+  --sequential       one video mode at a time (less memory, slower)
+  --openxcom DIR     an OpenXcom installation (or its en-US.yml): texts the
+                     game files lack come from there instead of our own
+  --prefer-openxcom  with --openxcom: take every UFOpaedia, briefing and
+                     slide text from OpenXcom
+
+What it writes (about 42 MB in all):
+  PACKS\        PACKS.VER (the format version), MUSIC.PAK, SOUNDS.PAK,
+                NAMES.PAK (soldier names), UFOPAED.PAK (UFOpaedia texts)
+  PACKS\EGA\    15 MB. EGA pictures: missions, races, armour, tanks, the
+                world map, screens, intro (*E.PAK), and the extra walking
+                frames (*EW.PAK) used when there is upper or extended memory
+  PACKS\CGA\    9 MB. The same in CGA colours (*C.PAK, *CW.PAK); Hercules
+                uses these too
+  PACKS\VGA\    18 MB. The 256-colour version (*V.PAK)
+
+No Windows? The converter is a Python program: with Python 3.12 and PyYAML
+installed, run  python tools/xcomconv.py <game folder>  from the SOURCE
+folder; it does the same on Linux or macOS.
+
+The packs come from your copy of the game. Keep them for yourself; do not
+upload or share them.
+
+
+5. INSTALLING ON THE DOS PC
+---------------------------
+ 1. Make a folder on the hard disk (C:\XCOMXT, for example).
+ 2. Copy XCOMXT.EXE, XCOMV20.EXE, XCOM286.EXE (or just the one you use).
+ 3. Copy the files in PACKS itself: PACKS.VER, MUSIC.PAK, SOUNDS.PAK,
+    NAMES.PAK, UFOPAED.PAK.
+ 4. Copy the mode folder you need as a subfolder: EGA, CGA or VGA. Any
+    one folder is enough for its mode. Several can sit side by side.
+ 5. Run the program from that folder.
+
+The game does not fit a floppy: a hard disk (or CF/SD adapter) is
+required. Saved games are written to the game folder (XCOMXT0.SAV to
+XCOMXT9.SAV), so it must be writable.
+
+Packs placed directly in the game folder (all in one heap) also work: the
+game looks in its mode's folder first, then in its own folder.
+
+Recommended DOS set-up: as much free conventional memory as you can get.
+Check with MEM ("Largest executable program size").
+ - XT: DOS, the mouse driver and nothing else. If you have a UMB driver,
+   load the mouse driver (and DOS buffers, if your DOS can) high. If you
+   have an EMS board, load its driver; the game finds it.
+ - 286 and up: DEVICE=HIMEM.SYS and DOS=HIGH in CONFIG.SYS; DOS=HIGH,UMB
+   with EMM386 on a 386. Leave XMS free for the game (the VGA version
+   needs 256 KB of it).
+
+
+6. THE THREE PROGRAMS
+---------------------
+All three play the same game in every video mode with the same packs and
+saves; they are built for different processors.
+
+  XCOMXT.EXE   8086 code. Runs on everything: 8088, 8086, V20, V30, 286
+               and up. If another one misbehaves, use this one.
+  XCOMV20.EXE  80186 code: NEC V20/V30, 80186/188 and up. A little faster
+               than XCOMXT.EXE. Never tested on a real V20: if it fails
+               there, please report it and use XCOMXT.EXE.
+  XCOM286.EXE  80286 code: a 286 or better only, never on an XT. About 5 %
+               faster than XCOMXT.EXE in alien turns.
+
+The examples in this manual say XCOMXT; use the name of your program.
+
+
+7. VIDEO MODES
+--------------
+With no option the game picks a mode at the start:
+  1. VGA, when the PC has a VGA card, a 286 or better, the VGA folder and
+     256 KB of free XMS. (An XT with an 8-bit VGA card plays in EGA.)
+  2. EGA, when it has an EGA or VGA card and the EGA folder.
+  3. Hercules (a mono card only) or CGA, with the CGA folder.
+XCOMXT LOG LOG.TXT writes the choice and the reason ("mode: ...").
+
+Force a mode with EGA, CGA, HERC or VGA on the command line. If its card or
+its folder is missing the game says so and stops; it does not fall back.
+
+ EGA   320x200 in 16 colours, the original pictures reduced to EGA colours.
+       Needs a card with 256 KB (most EGA cards; any VGA card).
+ CGA   320x200 in 4 colours, dithered. Readable but crowded; on a VGA
+       card's CGA emulation it can look worse than on a real CGA monitor.
+ HERC  Hercules (HGC with 64 KB, both pages): the CGA picture shown in
+       greys at 640x200 in the middle of the screen. Two of the four greys
+       look alike, so some highlights show as plain white. Not tested on a
+       real card. HERC says why when it cannot start (a colour card
+       present, an MDA, a card without the second page).
+ VGA   320x200 in 256 colours, the original look. A 286 or better, a VGA
+       card, DOS 5+, HIMEM.SYS with 256 KB+ of free XMS, a mouse.
+
+
+8. MEMORY: WHAT THE GAME DOES WITH WHAT YOU HAVE
+------------------------------------------------
+Rule one: the game itself comes first. Music, sound and speed-ups only use
+memory the battle does not need. Nothing about the rules changes with
+memory; only how things are drawn, how often the disk is read, and in
+rare cases what fits into one battle.
+
+Conventional memory (what MEM calls "Largest executable program size"):
+  568 KB or more  everything: every unit with its own picture in every
+                  battle, on a plain 640 KB machine.
+  about 540-568   the game plays; in the biggest battles some vehicles or
+                  armour share a picture (a hovertank may look like a
+                  tank) and the battle's title line says "Low memory".
+  below 540       wall and object pictures are read from disk as they are
+                  drawn: slower, but the battle happens. The game has been
+                  run down to 490 KB (not in Hercules). Less is untested.
+
+On a plain 640 KB XT, the tightest battles (a battleship in the jungle, a
+terror site, with a tank and a hovertank) can also bring:
+ - a tank or hovertank that stays in the craft for that battle;
+ - items on the floor shown as plain marks instead of their pictures;
+ - no picture for explosions (the sound and the damage are the same);
+ - no music in that battle (it plays only when 16 KB stay free);
+ - city layouts with many building types coming up a little less often;
+ - a pool of 96 carried items for the whole squad: a 20-soldier base
+   defence or a full Avenger with heavy loadouts may leave the last
+   soldiers with fewer items; 64 items on the floor at most.
+
+Upper memory blocks (UMBs): from DOS 5 (DOS=UMB), an XMS driver that offers
+UMBs, or an XT memory board's UMB driver; EMM386 on a 386. NOUMB leaves
+them to sound only, for comparing.
+  any size        overlay code is kept there, so less is loaded from disk
+                  (32 KB already helps as much as 64 KB).
+  8 KB or more    Sound Blaster digitised effects (some; 32 KB holds all
+                  of a screen's music and effects, 45 KB all of them).
+  44 KB or more   the battle map buffer (39 KB) moves out of the 640 KB:
+                  in testing, none of the big-battle compromises above
+                  showed any more. Item pools grow to 151 carried and 125
+                  on the floor.
+  60 KB or more   a second code area: the player's turn stays loaded.
+  96 KB or more   more tables move out (19.5 KB): 255 carried and 240
+                  floor items.
+  about 120 KB    (an XT with RAM at D000-EFFF): no code reloads at all in
+                  battle or on base screens.
+With a UMB or EMS/XMS the soldiers walk with 4 leg frames instead of 2, and
+on EGA the night has two light levels instead of one dark palette (DOS has
+16 levels; CGA and Hercules have no night darkening).
+
+EMS or XMS (optional, up to 2 MB used): a LIM 3.2/4.0 EMS board with its
+driver, or HIMEM.SYS on a 286 or better.
+ - A read cache: what the game reads from disk (packs and code) stays
+   there, so screens and battles seen before read almost nothing. In the
+   emulator a trip from the geoscape to a battle and back spent 16.5 s
+   reading without it, 8.3 s with EMS, 10.5 s with XMS.
+ - A picture store: removes the big-battle compromises above (every unit
+   its own picture, no "Low memory" line).
+ - A canvas for battle views: full redraws drop from about 0.6 s to about
+   0.15 s (EMS) or 0.2 s (XMS) on an XT with EGA.
+ - EMS costs under 1 KB of conventional memory; XMS costs 11 KB unless
+   there is a UMB to hold its code.
+ - EMS is used when both are present (NOEMS forces XMS); NOXMEM turns the
+   cache off; XMEMKB n caps the XMS used. Memory is released on exit (a
+   Ctrl-Break or crash in a battle may leave EMS pages taken until you
+   reboot).
+ - On a 286 without upper memory the VGA and EGA versions keep an 8 KB
+   code area in conventional memory for the canvas; NOCVAREA leaves it out.
+
+
+9. SOUND
+--------
+ - AdLib (or the FM chip of any Sound Blaster, at 388h): the original
+   music, and FM versions of the sound effects. Music is skipped on a
+   screen where it would leave less than 16 KB free.
+ - No sound card: sound effects on the PC speaker.
+ - Sound Blaster digitised effects (8-bit DMA; found through the BLASTER
+   variable or at 220h/240h): played only from memory outside the 640 KB:
+   a UMB of 8 KB or more (must be real memory the DMA can reach: an XT RAM
+   card, or EMM386 on a 386), or XMS on a 286 or better (HIMEM.SYS). With
+   neither, a Sound Blaster sounds like an AdLib, and the LOG says why
+   ("sound: no digital effects: ...").
+ - The game uses only Sound Blaster 1.x/2.0 commands. A Sound Blaster 16
+   works in an XT's 8-bit slot only on jumpered models with 8-bit DMA;
+   plug-and-play models need a 286 or better to set them up.
+ - The effects are the original 23, stored smaller (4-bit), one at a time
+   by priority: grainier than the original, and some events share a sound.
+ - The intro movie plays with its AdLib music but without its digitised
+   effects.
+ - In the game, S toggles sound; the options have NOSB, NOMUSIC, NOFMSFX
+   (PC speaker effects instead of FM) and NOSOUND.
+ - The FM effects and the Sound Blaster on real hardware have had little
+   testing.
+
+
+10. LAUNCH OPTIONS
+------------------
+Options are words after the program name, in any order and any case, no
+dashes: XCOMXT EGA NOINTRO. Options with a value take the next word:
+XCOMXT LOG LOG.TXT. Unknown words are ignored.
+
+Video
+  EGA | CGA | HERC | VGA   force a video mode (section 7)
+
+Sound
+  NOSB        do not use the Sound Blaster's digitised effects
+  NOMUSIC     no music
+  NOFMSFX     sound effects on the PC speaker instead of the FM chip
+  NOSOUND     no sound at all
+
+Memory
+  NOUMB       leave upper memory to sound only (for comparing)
+  NOXMEM      do not use EMS or XMS (also rules out the VGA version)
+  NOEMS       use XMS even when EMS is there
+  XMEMKB n    use at most n KB of XMS for the cache
+  NOCVAREA    no 8 KB canvas code area on a 286 without upper memory
+              (setting XCV=OFF in the environment does the same)
+
+Sight and AI
+  EXACTAI     exact sight and alien fire lines, as DOS (default on 286+)
+  NOEXACTAI   faster tile-based sight first (default below a 286)
+              The later of the two on the command line wins. See
+              section 12; exact mode costs an XT minutes per alien turn.
+
+Start and diagnostics
+  NOINTRO     skip the intro movie (any key or click also skips it)
+  LOG file    write a diagnostic log: CPU, video mode, memory, mouse,
+              sound and why each was chosen, plus battle events
+  BENCH       run a fixed benchmark battle and write BENCH.TXT
+
+Quick battles (instead of the campaign)
+  BATTLE      quick random battles, one after the other
+  MISSION f   a given mission pack, for example MISSION FA1E.PAK; the name
+              is terrain + UFO + mode letter: terrains FA farm, FO forest,
+              JU jungle, DE desert, MO mountain, PO polar; UFO 1 small
+              scout, 2 medium scout, 3 large scout, 4 harvester, 5
+              abductor, 6 terror ship, 7 battleship, 8 supply ship; UR0 a
+              terror site in a city.
+              Use the mode's letter: E (EGA), C (CGA or Hercules), V (VGA)
+  RACE f      a given alien race pack: RS sectoids, RF floaters, RN
+              snakemen, RM mutons, RE ethereals, RX mixed; + mode letter,
+              for example RACE RSE.PAK
+  NIGHT       a night battle
+  ARMOUR n    the soldiers' armour, 0-3 (none, personal, power suit,
+              flying suit)
+  SQUAD n     n soldiers (default 8; at most the craft's seats)
+  CRAFT S|L|A land in the Skyranger, Lightning or Avenger
+  HWP digits  tanks along: 1 Tank/Cannon, 2 Tank/Rocket Launcher,
+              3 Tank/Laser Cannon, 4 Hovertank/Plasma, 5 Hovertank/
+              Launcher; HWP 14 brings a Tank/Cannon and a Hovertank/Plasma
+  ALIENS n    at most n aliens
+  DIFF n      difficulty 0-4 (Beginner to Superhuman)
+  MONTH n     the aliens' weapons as after n months of a campaign
+  SEED n      the random seed: the same number gives the same battle
+  GEAR        heavy weapons, launchers, stun gear and a motion scanner
+              for the first soldiers
+  PSI         psi skill and Psi-Amps for the soldiers
+  CRASHED     the UFO has crashed rather than landed
+
+The program also has test and debugging options (KEYS, DEBUG, SEEALL,
+SHOTLOG and others) used by the developers' scripts. They can spoil a
+game; they are described in SOURCE\BUILDING.md.
+
+
+11. PLAYING: KEYS AND MOUSE
+---------------------------
+The screens work with the mouse as in the DOS game. The keys below are
+there for keyboard players and for speed.
+
+Start menu: N new game (then a difficulty), L load, Q quit. Place the
+first base with the mouse, or the arrows and Enter.
+
+Geoscape
+  mouse         click a base, craft, UFO or site for its window, as in DOS;
+                right click centres the map there
+  arrows        scroll the map;  + / -  zoom in / out (1:1, 2x, 4x)
+  1-4           time speed;  Space  pause
+  Tab           select a detected UFO, terror site or alien base;
+  A             select a site only
+  Enter         send the current base's ready transport to the selection
+  I             launch the next armed interceptor at the selected UFO
+  P             send a craft to patrol a point (finds alien bases)
+  B             base screens;  R  soldiers;  F  funding;  G  graphs
+  U             UFOpaedia;  S  save;  C  final assault (when researched)
+  D             bring back minimised air combats
+  Esc           game options: load, save, abandon game, quit
+ Pop-ups (UFO detected, terror site, landing...) stop the clock: Enter
+ answers yes, Esc no or OK.
+
+Air combat
+  1-5   stance: standoff, cautious, standard, aggressive, disengage
+  6 / 7 weapon 1 / 2 off or on;  M  minimise;  Tab  next combat window
+
+Base screens
+  The basescape's buttons as in DOS; 1-8 or the small bases at the top
+  change base. Purchase, Sell and Transfer: each row has three buttons
+  each way (1, 10, all); + / - one more or less, End all, Home none, Tab
+  OK. Research and Manufacture: N new project, Enter to set its staff with
+  + / - (A all free ones), I for an endless production run. A production
+  run can be set to sell what it makes as soon as each unit is done (an
+  OpenXcom extra).
+
+Saving
+  Ten slots (keys 1-9 and 0). Click a slot to save, type a name, Enter.
+  A right click on a used slot deletes it after a question (an OpenXcom
+  extra). Saves made during a battle load straight back into it.
+
+Battlescape
+  mouse              click a tile to move the cursor, click again to walk;
+                     the panel buttons as in DOS
+  arrows, Home, End, PgUp, PgDn   move the cursor
+  + / -              level up / down          Tab   next soldier
+  Enter              walk to the cursor       Space turn towards the cursor
+  F / A / U          snap / aimed / auto shot at the cursor
+  G                  throw a grenade          R     reload (15 TU)
+  K                  kneel / stand            M     medi-kit
+  I                  inventory                N     motion scanner
+  V                  next visible alien       C     centre on soldier
+  S                  sound on / off           E     end turn
+  Esc (or F1)        options: load, save, abandon, game options
+  F2                 abort the mission
+ A walk stops when the walker sees a new alien; Enter (or a click) again
+ goes on. Hovertanks and flying suits fly: put the cursor on a higher
+ level with + and walk there.
+
+
+12. DIFFERENCES FROM THE DOS ORIGINAL
+-------------------------------------
+The rules (time units, accuracy, damage, armour, morale, research,
+funding, alien missions) follow DOS. The differences are mostly in the
+look:
+ - 16 colours (EGA), 4 (CGA) or greys (Hercules); 256 only in the VGA
+   version.
+ - A flat world map with three zoom levels instead of a rotating globe.
+ - Soldiers jump from tile to tile with 2 leg frames (4 with extra
+   memory) instead of a smooth walk; turning jumps to the last direction.
+ - Shots are a dotted line; a thrown grenade is not drawn in flight.
+ - An explosion is one picture for 0.4 s instead of an animated fireball.
+ - Night: one dark palette on a plain XT; two light levels on EGA with
+   upper memory (DOS has 16). Who sees whom at night is as in DOS.
+ - The selected soldier's arrow and the cursor do not bob or blink; UFO
+   doors open at once; the view changes level only at the end of a walk.
+ - "Hidden movement" is a plain window; an hourglass pointer shows when
+   the game is busy for more than half a second.
+ - Sound effects are smaller and grainier, one at a time (section 9).
+
+Sight and the aliens' thinking:
+ - Below a 286 the game first checks sight along a line of tiles and only
+   then uses DOS's exact voxel test. The default also gives the aliens a
+   slightly simpler view when they choose where to go: in tests their
+   choices differed from the exact ones in about 6 % of cases. Trees and
+   bushes hide a little more than in DOS. Exact mode (EXACTAI) does
+   everything as DOS but costs an XT 1.5 to 2.5 minutes per alien turn;
+   it is the default on a 286 or better.
+ - The aliens plan their moves in smaller steps than DOS; they can seem a
+   bit more random and pick worse cover.
+ - Smoke cuts sight per tile rather than per voxel: very close to DOS.
+
+Limits:
+ - At most 60 units on a battle map, 26 soldiers, 8 tanks. With every
+   slot used a new unit (a zombie, say) may not appear.
+ - Bases hold at most 100 soldiers each and 250 in all.
+ - Bodies can be carried but not thrown.
+ - A tank can sometimes slip past a wall's end diagonally where DOS sends
+   it round.
+ - Lists of research projects, production runs and the like have size
+   limits higher than normal play needs.
+
+Additions from OpenXcom (off unless you use them): selling a production
+run's output automatically, deleting saves, the Game Options' scrolling
+and speed settings.
+
+
+13. SPEED
+---------
+Measured in the 86Box emulator; real machines will differ.
+
+ 10 MHz 8088, EGA, plain 640 KB:
+   full battle redraw            about 0.55-0.6 s (CGA 0.4, Hercules 0.4)
+   moving the cursor one tile    about 0.04 s
+   soldier walking               about 0.06 s a step
+   path search (60 TU soldier)   0.2-0.3 s
+   alien turn, busy map          5-20 s (terror site with civilians ~30 s)
+   alien turn, exact mode        1.5-2.5 minutes
+   intro movie                   about 10 frames a second from the disk
+ With EMS or XMS: redraws about 0.15-0.2 s, screens seen before 5-12
+ times faster to open.
+ 8 MHz 286, VGA: full redraw 0.2-0.3 s; first jungle alien turn about
+ 20 s with exact mode.
+
+The Game Options' speed settings (1-6) are kept in real time on any CPU;
+on an 8088 the drawing itself is the limit, so the fast settings feel
+alike.
+
+
+14. TROUBLESHOOTING AND REPORTING BUGS
+--------------------------------------
+"Packs are from another version: run XCOMCONV.EXE"
+   The program and the packs do not match. Use the XCOMCONV.EXE from this
+   same release and copy the new PACKS (all of it, the mode folders too).
+The game says a mode's folder or card is missing
+   You forced a mode (EGA, CGA, HERC, VGA) whose folder is not there or
+   whose card was not found. Copy the folder, or let the game choose.
+It does not pick VGA on my 286
+   It needs a VGA card, the VGA folder, HIMEM.SYS and 256 KB of free XMS
+   in one block. XCOMXT LOG LOG.TXT says which one was missing.
+Battles show "Low memory" or plain marks for items
+   Free more conventional memory (section 5), or add upper memory or EMS.
+No digitised sound on my Sound Blaster
+   Expected without a UMB or XMS (section 9). The LOG says why.
+XCOMV20.EXE or XCOM286.EXE crashes or misbehaves
+   Use XCOMXT.EXE, and please report it.
+Old saves do not load
+   Saves from other versions may not load. This is an alpha.
+
+To report a bug: run XCOMXT LOG LOG.TXT (with your usual options), make it
+happen again, and send LOG.TXT with what you did, your CPU, video card,
+memory (the MEM output), sound card and the program you used. A save made
+just before the problem helps a lot.
+
+
+15. LICENCE AND SOURCE
+----------------------
+XCOM-XT and XCOMCONV are free software under the GNU General Public
+License, version 3 or later (COPYING). The SOURCE folder holds the source
+code of exactly these programs, with the build instructions in its
+BUILDING.md. The converter uses OpenXcom's rule files (GPL v3).
+
+X-COM: UFO Defense is (C) its owners. XCOM-XT contains none of its data,
+and is not made or endorsed by them. The packs XCOMCONV makes are derived
+from your copy of the game: they are for your own use only.

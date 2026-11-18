@@ -1,0 +1,35 @@
+# Build output
+build/
+*.obj
+*.o
+*.err
+*.map
+*.lnk
+
+# Packs converted from the original game data: copyrighted, never commit
+packs/
+
+# Emulator disk images and machine state
+emu/*.img
+emu/*.vhd
+emu/*.log
+emu/*/nvr/
+emu/*/screenshots/
+emu/*/printer/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# DOS system files copied from your own DOS disks
+emu/dos*/
+
+# Saved campaigns
+*.SAV
+
+
+# The Lo-tech EMS driver: its terms of use are not clear, so it stays out of the repository
+emu/drivers/LTEMM.EXE
+emu/drivers/LTEMRME.TXT
+emu/poll/

@@ -1,0 +1,82 @@
+XCOM-XT Alpha 0.5.1 - QUICK START
+=================================
+
+XCOM-XT plays X-COM: UFO Defense (1994) on old DOS PCs: from a 10 MHz 8088
+or NEC V20 XT with 640 KB and EGA, CGA or Hercules, up to a 286 or better
+with VGA in 256 colours. It is a new engine: the download has no game data.
+You make the data from your own copy of the game, on a Windows PC.
+
+This is an alpha. Expect bugs, and expect saved games and data packs to stop
+working with later versions. MANUAL.TXT has the details.
+
+
+WHAT YOU NEED
+-------------
+ - Your own copy of X-COM: UFO Defense, the DOS version 1.4 (the Steam and
+   GOG versions are that version; so is the CD).
+ - A Windows PC (64-bit) to run the converter, XCOMCONV.EXE.
+ - The DOS PC: an 8088/8086/V20 or better, 640 KB, a hard disk with
+   10 MB (CGA) to 20 MB (EGA or VGA) free, DOS 3 or later
+   (DOS 5 or later for VGA), EGA, CGA, Hercules or VGA. A mouse and its
+   DOS driver are strongly recommended (the VGA version needs one).
+ - Free conventional memory: about 568 KB for everything; it plays from
+   about 540 KB with small compromises (MANUAL.TXT, "Memory").
+
+
+STEP 1 - MAKE THE DATA (on the Windows PC)
+------------------------------------------
+ 1. Unzip this release into a folder on the Windows PC.
+ 2. Double-click XCOMCONV.EXE. It finds Steam and GOG installs by itself;
+    if it cannot, it asks for the game folder (the one with GEODATA,
+    MAPS, UNITS...). You can also give it on the command line:
+        XCOMCONV "C:\Games\XCOM"
+ 3. Wait a few minutes. It writes a PACKS folder next to XCOMCONV.EXE:
+        PACKS\          shared files (sound, music, names, UFOpaedia)
+        PACKS\EGA\      pictures for EGA
+        PACKS\CGA\      pictures for CGA and Hercules
+        PACKS\VGA\      pictures for the 256-colour VGA version
+
+
+STEP 2 - COPY TO THE DOS PC
+---------------------------
+ 1. Make a folder on the DOS PC's hard disk, for example C:\XCOMXT.
+ 2. Copy into it: XCOMXT.EXE, XCOMV20.EXE, XCOM286.EXE, and all the files
+    in PACKS itself (the .PAK files and PACKS.VER).
+ 3. Copy only the mode folder(s) your PC needs, as subfolders:
+        XT with EGA (or an 8-bit VGA card)   ->  EGA
+        XT with CGA or Hercules              ->  CGA
+        286 or better with VGA               ->  VGA (and EGA if you like)
+    The result looks like this:
+        C:\XCOMXT\XCOMXT.EXE   C:\XCOMXT\SOUNDS.PAK   C:\XCOMXT\PACKS.VER
+        C:\XCOMXT\EGA\...      (the mode folder)
+
+
+STEP 3 - PLAY
+-------------
+ Go to the folder and run the program for your CPU:
+        CD \XCOMXT
+        XCOMXT          8088, 8086, V20, anything (always works)
+        XCOMV20         NEC V20/V30 or 80186 (a little faster)
+        XCOM286         286, 386 or better
+ The game picks the video mode itself. To force one, add EGA, CGA, HERC or
+ VGA, for example: XCOMXT CGA
+
+ Start menu: N new game, L load, Q quit. Then click a spot on the world map
+ to place your first base and play as in the original. Esc opens the game
+ options (save, load, quit).
+
+
+IF IT DOES NOT WORK
+-------------------
+ - "Packs are from another version": run this release's XCOMCONV again and
+   copy the new PACKS.
+ - The game stops or says memory is short: free conventional memory (unload
+   TSRs, load drivers high). MEM shows "Largest executable program size".
+ - Anything else: run XCOMXT LOG LOG.TXT, try again, and keep LOG.TXT. It
+   says which CPU, video mode, memory and sound the game found and why.
+
+
+The packs are made from your copy of the game: they are for your own use,
+do not share them. XCOM-XT is free software under the GNU GPL v3 or later
+(COPYING); the source is in the SOURCE folder. X-COM: UFO Defense is (C) its
+owners and is not part of this download.
